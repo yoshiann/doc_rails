@@ -8,7 +8,7 @@ jobs:
       - image: circleci/ruby:2.7
     working_directory: /doc_rails
     steps:
-      - checkout
+      - checkout:
           path: /doc_rails
       - ruby/install-deps
 
