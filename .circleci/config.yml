@@ -1,9 +1,9 @@
 version: 2.1
 orbs:
   ruby: circleci/ruby@1.1.2
-  aws-cli: circleci/aws-cli@1.3
-  aws-ecr: circleci/aws-ecr@6.15
-  aws-ecs: circleci/aws-ecs@2.0
+#  aws-cli: circleci/aws-cli@1.3
+#  aws-ecr: circleci/aws-ecr@6.15
+#  aws-ecs: circleci/aws-ecs@2.0
 
 jobs:
   build:
@@ -41,15 +41,15 @@ jobs:
           name: test
           command: bundle exec rake test
 
-  deploy:
-    machine:
-      image: circleci/classic:edge
-    steps:
-      - ckeckout
-      - add_ssh_keys:
-          fingerprints:
-            - 7f:21:c0:20:2d:51:fe:50:eb:f4:31:19:27:12:e4:cc
-      - run: ssh -p $SSH_PORT $SSH_USER@SSH_HOST "/var/doc_rails/deploy-me.sh"
+#  deploy:
+#    machine:
+#      image: circleci/classic:edge
+#    steps:
+#      - ckeckout
+#      - add_ssh_keys:
+#          fingerprints:
+#            - 7f:21:c0:20:2d:51:fe:50:eb:f4:31:19:27:12:e4:cc
+#      - run: ssh -p $SSH_PORT $SSH_USER@SSH_HOST "/var/doc_rails/deploy-me.sh"
 
 workflows:
   version: 2
@@ -60,10 +60,10 @@ workflows:
       - test:
           requires:
             - build
-      - deploy:
-          requires:
-          - test
-          filters:
+#      - deploy:
+#          requires:
+#          - test
+#          filters:
             branches: only:main
   #deploy:
   #  jobs:
