@@ -44,12 +44,12 @@ jobs:
   deploy:
     machine:
       image: circleci/classic:edge
-      steps:
-        - ckeckout
-        - add_ssh_keys:
-            fingerprints:
-              - 7f:21:c0:20:2d:51:fe:50:eb:f4:31:19:27:12:e4:cc
-        - run: ssh -p $SSH_PORT $SSH_USER@SSH_HOST "/var/doc_rails/deploy-me.sh"
+    steps:
+      - ckeckout
+      - add_ssh_keys:
+        fingerprints:
+          - 7f:21:c0:20:2d:51:fe:50:eb:f4:31:19:27:12:e4:cc
+      - run: ssh -p $SSH_PORT $SSH_USER@SSH_HOST "/var/doc_rails/deploy-me.sh"
 
 workflows:
   version: 2
