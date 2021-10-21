@@ -9,10 +9,10 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7
-    working_directory: /var/doc_rails
+    working_directory: ~/doc_rails
     steps:
       - checkout:
-          path: /var/doc_rails
+          path: ~/doc_rails
       - ruby/install-deps
 
   test:
@@ -22,17 +22,17 @@ jobs:
         command: [--default-authentication-plugin=mysql_native_password]
         environment:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: doc_rails_test
-          #MYSQL_USER: root
+          MYSQL_DATABASE: doc_rails_development
+          MYSQL_USER: root
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       APP_DATABASE_HOST: "127.0.0.1"
       RAILS_ENV: test
-    working_directory: /var/doc_rails
+    working_directory: ~/doc_rails
     steps:
       - checkout:
-          path: /var/doc_rails
+          path: ~/doc_rails
       - ruby/install-deps
       - run:
           name: Database setup
